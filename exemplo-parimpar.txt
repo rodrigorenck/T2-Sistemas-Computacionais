@@ -1,0 +1,76 @@
+; vet1[10] = {11, 67 ...};
+; vet2[5] = {25, -13 ...};
+;
+; parimpar(vet, tam) {
+; 	i = 0;
+; 	while (i < tam) {
+; 		if (vet[i] & 1)
+;			impares++;
+;		else
+;			pares++;
+;		i++
+; 	}
+; }
+
+main
+	ldi r2,10  -> r2 = 10 ->
+	ldi r5,vet1 -> r5 = endereco do vetor 1
+	stw r5,vet_p -> vet_p = endereco do vetor 1
+	ldi r6,ret1 -> r6 = endereco do ret1
+	bnz r7,parimpar -> while(true) parimpar()
+ret1
+	ldi r2,5
+	ldi r5,vet2
+	stw r5,vet_p
+	ldi r6,ret2
+	bnz r7,parimpar
+ret2
+	hcf
+
+parimpar
+	ldi r4,0 -> r4 = 0
+	stw r4,pares -> pares = r4
+	stw r4,impares -> impares = r4
+
+	ldi r1,0 > r1 = 0
+rep
+	slt r3,r1,r2 -> if(r1<r2) r3 = 1  ----- ou seja,
+	bez r3,fim -> if(r3 == 0) fim    ----- if(r1>=r2) fim
+	
+	ldw r5,vet_p -> r5 = endereco vet1 -- ex: 100
+	add r5,r5,r1 ----- pega o prox elemento
+	add r5,r5,r1 ----- ''
+	ldw r5,r5 -> r5 = r5 (novo valor depois de somar 2) ex: 102
+	
+	add r1,1 -> r1 = r1(0) + 1
+	
+	and r5,1 -> ??
+	bnz r5,impar -> if(r5 == 0 ) par else impar
+par
+	ldw r4,pares -> r4 = 0
+	add r4,1 -> r4 = 0 + 1 ----- i++
+	stw r4,pares -> pares = 1
+	bnz r7,rep -> volta para o rep
+impar
+	ldw r4,impares
+	add r4,1
+	stw r4,impares
+	bnz r7,rep
+fim
+	ldi r3,10
+	ldw r4,pares
+	stw r4,0xf002
+	stw r3,0xf000
+	ldw r4,impares
+	stw r4,0xf002
+	stw r3,0xf000
+	
+	bnz r7,r6
+
+
+vet1	11 67 124 -333 7 2 3 0 6 439
+vet2	25 -13 -525 18 10456
+vet_p	0
+pares	0
+impares 0
+

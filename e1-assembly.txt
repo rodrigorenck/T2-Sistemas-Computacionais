@@ -1,0 +1,19 @@
+main
+	ldi r5,str
+	ldi r6,size
+	bnz r7,count_words
+ret1
+ret2
+	hcf
+count_words
+	ldi r1,i
+	ldi r2,words
+    ldw r5, str
+rep
+	slt 
+	
+	
+str	    "Ola Mundo\n"
+size	8
+i       0
+words	0
