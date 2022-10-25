@@ -13,7 +13,7 @@
 ; }
 
 main
-	ldi r2,10  -> r2 = 10 ->
+	ldi r2,10  -> r2 = 10 (tamanho) ->
 	ldi r5,vet1 -> r5 = endereco do vetor 1
 	stw r5,vet_p -> vet_p = endereco do vetor 1
 	ldi r6,ret1 -> r6 = endereco do ret1
@@ -28,7 +28,7 @@ ret2
 	hcf
 
 parimpar
-	ldi r4,0 -> r4 = 0
+	ldi r4,0 -> r4 = 0 (i)
 	stw r4,pares -> pares = 0
 	stw r4,impares -> impares = 0
 
