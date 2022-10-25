@@ -29,10 +29,10 @@ ret2
 
 parimpar
 	ldi r4,0 -> r4 = 0
-	stw r4,pares -> pares = r4
-	stw r4,impares -> impares = r4
+	stw r4,pares -> pares = 0
+	stw r4,impares -> impares = 0
 
-	ldi r1,0 > r1 = 0
+	ldi r1,0 -> r1 = 0
 rep
 	slt r3,r1,r2 -> if(r1<r2) r3 = 1  ----- ou seja,
 	bez r3,fim -> if(r3 == 0) fim    ----- if(r1>=r2) fim
