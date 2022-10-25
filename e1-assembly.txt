@@ -31,7 +31,7 @@ rep1 -> primeiro while
 	bnz r7,rep1
 rep2 -> segundo while
     slt r3,r5,32 -> if(str<32) r3 = 1 -> ou seja, volta pro while mais de fora
-    bnz r3,rep0
+    bnz r3,sum_words
     slt r3,127,r5 -> if(127<r5) r2 = 1 -> ou seja, volta pro while mais de fora
     bnz r3,sum_words
     slt r3,r1,r6 -> if(i>=size) return words -> como retorno o words?  --------- posso usar o r3 denovo?
