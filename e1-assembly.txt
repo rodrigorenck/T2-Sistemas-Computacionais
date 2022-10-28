@@ -3,13 +3,11 @@ main
 	ldi r6,size -> r6 = 8
 	bnz r7,count_words -> chamada de funcao
 ret1 -> return words
-    ***********printar r2 -> como faco?
-    stw r2,0xf0020xf000 -> printando o r2 (words)
+    stw r2,0xf002  -> printando inteiro -> r2 (words)
     bnz r7,ret3
 ret2 -> return words +1
     add r2,1
-    ***********printar r2 -> como faco?
-    stw r2,0xf0020xf000 -> printando o r2 (words)
+    stw r2,0xf002 -> printando o r2 (words)
     bnz r7,ret3
 ret3
 	hcf
@@ -19,11 +17,11 @@ count_words
     ldw r5,str -> carrega o valor do vetor na posicao inicial e guarda no r5 ----- r5 = o (79)
 rep0 -> while geral
 rep1 -> primeiro while
-	slt r3,33,r5 -> if(33>=str) rep2
+	slt r3,33,r5 -> if(33>=str) rep2 ---- if 33<str[i]  r3 = 1
 	bnz r3,rep2
 	slt r4,r5,126 -> if(str<126) rep2
 	bnz r4,rep2
-	slt r3,r1,r6 -> if(i>=size) return words -> como retorno o words?  --------- posso usar o r3 denovo?
+	slt r3,r1,r6 -> if(i>=size) return words  --------- posso usar o r3 denovo?
 	bez r3,ret1 -> return words
 	add r1,1 -> i++
 	add r5,r5,1 ----- pega o prox elemento da array

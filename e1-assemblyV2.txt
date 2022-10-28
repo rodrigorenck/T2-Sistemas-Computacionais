@@ -1,0 +1,50 @@
+main
+	ldi r5,str -> r5 = endereco vetor
+	ldi r6,size -> r6 = 8
+	bnz r7,count_words -> chamada de funcao
+ret1 -> return words
+    stw r2,0xf002  -> printando inteiro -> r2 (words)
+    bnz r7,ret3
+ret2 -> return words +1
+    add r2,1
+    stw r2,0xf002 -> printando o r2 (words)
+    bnz r7,ret3
+ret3
+	hcf
+count_words
+	ldi r1,i
+	ldi r2,words
+    ldw r5,str -> carrega o valor do vetor na posicao inicial e guarda no r5 ----- r5 = o (79)
+rep0 -> while geral
+	slt r3,r5,33 -> if(str<33) rep1 ----- cechando a primeira condicao, como eh um OU se qualquer uma das duas for V eu entro no while -> rep1
+	bnz r3,rep1 -> entro no primeiro while
+	slt r3,r5,126 -> if(str<126) rep1 ------ checando a segunda condicao
+	bez r3,rep1 -> entro no primeiro while
+	slt r3,r5,32 -> if(str<32) r3 = 1 -> ou seja, volta pro while mais de fora
+	bnz r3,sum_words
+	slt r3,127,r5 -> if(127<r5) r2 = 1 -> ou seja, incremente words e volta pro while mais de fora
+    bnz r3,sum_words
+    bnz r7,rep2 -> se as condicoes foram satisfeitas entramos no segundo while
+rep1 -> primeiro while
+    slt r3,r1,r6 -> if(i>=size) return words
+    bez r3,ret1 -> return words
+    add r1,1 -> i++
+    add r5,1 ----- pega o prox elemento da array
+    add r5,1 -----
+    bnz r7,rep0 -> volta pro while mais de fora
+rep2 -> segundo while
+    slt r3,r1,r6 -> if(i>=size) return words
+    bez r3,ret2 -> return words + 1
+    add r1,1 -> i++
+    add r5,1
+    add r5,1
+    bnz r7,rep2
+sum_words -> words++
+    add r2,1
+    bnz r7,rep0
+
+	
+str	    "ola mundo\n"
+size	8 -> tamanho
+i       0 -> indice do vetor
+words	0 -> contar o numero de palavras

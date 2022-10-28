@@ -1,5 +1,5 @@
 /**
- * Escreva um programa que conta o n´umero de palavras armazenadas em uma string e apresenta o total no terminal. Como sugestao,
+ * Escreva um programa que conta o numero de palavras armazenadas em uma string e apresenta o total no terminal. Como sugestao,
  * utilize a funcao abaixo como referencia para sua implementacao, a ser chamada a partir do programa principal. Utilize duas strings na demonstracao
  * do funcionamento.
  */
@@ -25,6 +25,11 @@ public class E1 {
         }
     }
 
+//    str<33  = 0
+//
+//    str<33 = 1 -> pulo pro while
+//
+//    str<126 = 0 -> pulo pro while
 
     public static void main(String[] args) {
         char[] words = {'l', 'a', 'u', ' ', 'e', 'x', 'q'};

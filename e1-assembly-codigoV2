@@ -1,0 +1,54 @@
+main
+	ldi r5,str
+	ldi r6,size
+	bnz r7,count_words
+ret1
+    stw r2,0xf002
+    bnz r7,ret3
+ret2
+    add r2,1
+    stw r2,0xf002
+    bnz r7,ret3
+ret3
+	hcf
+count_words
+	ldi r1,i
+	ldi r2,words
+    ldw r5,str
+rep0
+	ldi r4,33
+	slt r3,r5,r4
+	bnz r3,rep1
+	ldi r4,126
+	slt r3,r5,r4
+	bez r3,rep1
+	ldi r4,32
+	slt r3,r5,r4
+	bnz r3,sum_words
+	ldi r4,127
+	slt r3,r4,r5
+    bnz r3,sum_words
+    bnz r7,rep2
+rep1
+    slt r3,r1,r6
+    bez r3,ret1
+    add r1,1
+    add r5,1
+    add r5,1
+    bnz r7,rep0
+rep2
+    slt r3,r1,r6
+    bez r3,ret2
+    add r1,1
+    add r5,1
+    add r5,1
+    bnz r7,rep2
+sum_words
+    add r2,1
+    bnz r7,rep0
+
+
+str	    "ola mundo\n"
+size	8
+i       0
+words	0

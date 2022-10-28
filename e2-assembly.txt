@@ -1,0 +1,34 @@
+main
+    ldi r1,nums -> r1 = endereco do vetor nums
+    ldi r2,max -> r2 = -1000
+    ldi r4,j -> r4 = 0
+    ldi r6,i -> r5
+for1
+    slt r3,r6,size -> if(i>=size) fim
+    bez r3,fim
+    ldi r5,soma -> r5 = 0
+    add r6,1 -> i++
+for2
+    slt r3,r4,size -> if(j>=size) fim
+    bez r3,fim
+    ldw r1,nums -> guarda o elemento na posicao i
+    add r5,r1 -> soma = soma + nums[i]
+    add r1,1 -> pega o proximo elemento do array
+    add r1,1
+    slt r3,r2,r5 -> if(max_soma >= soma) volta pro for
+    bez r3,for2
+    add r4,1 -> j++
+if
+   ldi r2,r5 -> max_soma = soma
+fim
+    stw r5,0xf002
+    hcf
+
+
+
+nums    5 2 -2 -7 3 14 10 -3 0 -6 4 1
+max   -1000
+soma    0
+size    12
+i   0
+j   0

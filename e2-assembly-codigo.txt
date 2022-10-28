@@ -1,0 +1,34 @@
+main
+    ldi r1,nums
+    ldi r2,max
+    ldi r4,j
+    ldi r6,i
+for1
+    slt r3,r6,size
+    bez r3,fim
+    ldi r5,soma
+    add r6,1
+for2
+    slt r3,r4,size
+    bez r3,fim
+    ldw r1,nums
+    add r5,r1
+    add r1,1
+    add r1,1
+    slt r3,r2,r5
+    bez r3,for2
+    add r4,1
+if
+   ldi r2,r5
+fim
+    stw r5,0xf002
+    hcf
+
+
+
+nums    5 2 -2 -7 3 14 10 -3 0 -6 4 1
+max   -1000
+soma    0
+size    12
+i   0
+j   0
